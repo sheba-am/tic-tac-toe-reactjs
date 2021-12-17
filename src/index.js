@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Button, ButtonGroup, Typography} from '@mui/material';
+import {Button, ButtonGroup, Typography, Grid} from '@mui/material';
 import xPic from './img/X.png';
 import oPic from './img/O.png';
 
@@ -42,9 +42,6 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <Typography variant="h3"  className="gameheader" align="center">
-          Tic Tac Toe
-        </Typography>;
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -146,21 +143,26 @@ class Game extends React.Component {
       status = 'Next player: ' + (this.state.xIsNext ? 'X': 'O');
     }
     return (
-      <div className="game">
-        <div className="game-board">
+      <div>
+        <Typography variant="h3"  className="gameheader" align="center">
+          Tic Tac Toe
+        </Typography>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={6} md={8} className="game-board">
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
            />
-        </div>
-        <div className="game-info">
+        </Grid>
+        <Grid item xs={6} md={4} className="game-info">
           <Typography variant="h5"  className="thestatus" >
           { status }
           </Typography>
           <ButtonGroup className="movesbutton" orientation="vertical" aria-label="vertical contained button group" variant="contained">
             {moves}
           </ButtonGroup>
-        </div>
+        </Grid>
+      </Grid>
       </div>
     );
   }
