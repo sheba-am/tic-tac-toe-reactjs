@@ -1,20 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import {Button, ButtonGroup, Typography} from '@mui/material';
+import xPic from './img/X.png';
+import oPic from './img/O.png';
 
 function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
+  if (props.value ==='X'){
+    return (
+      <button className="square" onClick={props.onClick}>
+        <img className="x_pic" src={xPic} alt="X"></img>
+      </button>
+    );
+  }else if(props.value ==='O') {
+    return(
+      <button className="square" onClick={props.onClick}>
+        <img className="o_pic" src={oPic} alt="X"></img>
+        </button>
+    );
+  }else {
+    return(
+      <button className="square" onClick={props.onClick}>
+        </button>
+    );
+  }
 
-    </button>
-  );
 }
 
 class Board extends React.Component {
-
-
 
 
   renderSquare(i) {
@@ -27,16 +40,11 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.props.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
-    }
-
     return (
       <div>
+        <Typography variant="h3"  className="gameheader" align="center">
+          Tic Tac Toe
+        </Typography>;
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -94,7 +102,7 @@ class Game extends React.Component {
     const history =this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length-1];
     const squares = current.squares.slice(); 
-    //ignore click is square is filled or the game is finished
+    //ignore click if square is filled or the game is finished
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -115,19 +123,18 @@ class Game extends React.Component {
     });
   }
 
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves =history.map((step, move) =>{
-      const desc = move ? 'Go to move #' + move : 'Go to game start';
+      const desc = move ? 'Go to move #' + move : 'Go to start';
       // these are the buttons that show which move to go back to 
       return (
         <li key={move}> 
-          <button onClick={() => this.jumpTo(move)}>
-            {desc}
-          </button>
+          <Button onClick={() => this.jumpTo(move) } color="secondary" size="small">{desc}</Button>
         </li>
       );
     });
@@ -147,8 +154,12 @@ class Game extends React.Component {
            />
         </div>
         <div className="game-info">
-          <div>{ status }</div>
-          <ol>{moves}</ol>
+          <Typography variant="h5"  className="thestatus" >
+          { status }
+          </Typography>
+          <ButtonGroup className="movesbutton" orientation="vertical" aria-label="vertical contained button group" variant="contained">
+            {moves}
+          </ButtonGroup>
         </div>
       </div>
     );

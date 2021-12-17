@@ -1,16 +1,36 @@
+
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-}
+  margin-left: 20% ;
+  margin-right: 20% ;}
 
 ol, ul {
   padding-left: 30px;
+}
+.x_pic {
+  width: 75px;
+}
+.o_pic {
+  width: 110px;
+}
+.thestatus {
+  color:#14ad0e;
+}
+.gameheader {
+  color: #630d85;
+}
+
+.board-row {
+margin-left: 26%;
 }
 
 .board-row:after {
   clear: both;
   content: "";
   display: table;
+}
+.movesbutton {
+  list-style-type: none;
 }
 
 .status {
@@ -24,12 +44,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 120px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 120px;
 }
 
 .square:focus {
@@ -40,11 +60,12 @@ ol, ul {
   background: #ddd;
 }
 
-.game {
+/* .game {
   display: flex;
   flex-direction: row;
-}
+} */
+
 
 .game-info {
-  margin-left: 20px;
+  margin-left: 30%;
 }
